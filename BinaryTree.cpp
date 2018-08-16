@@ -2,11 +2,5 @@
 #include "BinaryTree.h"
 
 
-BinaryTree::BinaryTree()
-{
-}
-
-
-BinaryTree::~BinaryTree()
-{
-}
+BinaryTree::BinaryTree() : root(nullptr) { }
+BinaryTree::~BinaryTree() { }

@@ -2,11 +2,5 @@
 #include "Node.h"
 
 
-Node::Node()
-{
-}
-
-
-Node::~Node()
-{
-}
+Node::Node(int v) : value(v), left(nullptr), right(nullptr), parent(nullptr) { }
+Node::~Node() { }
