@@ -248,3 +248,62 @@ void BinaryTree::PostorderHelper(Node * node)
 		std::cout << node->GetValue() << "  ";
 	}
 }
+
+void BinaryTree::LeftRotation(Node * x)
+{
+	Node * y = x->GetParent();
+
+	if (y == nullptr) return;
+
+	if (y == root) root = x;
+
+	if (y->GetParent() != nullptr)
+	{
+		if (y->GetParent()->GetLeft() == y)
+		{
+			y->GetParent()->SetLeft(x);
+		}
+		else
+		{
+			y->GetParent()->SetRight(x);
+		}
+	}
+
+	x->SetParent(y->GetParent());
+	y->SetParent(x);
+	y->SetRight(x->GetLeft());
+	if (y->GetRight() != nullptr) y->GetRight()->SetParent(y);
+	x->SetLeft(y);
+}
+
+void BinaryTree::RightRotation(Node * x)
+{
+	Node * y = x->GetParent();
+
+	if (y == nullptr) return;
+
+	if (y == root) root = x;
+
+	if (y->GetParent() != nullptr)
+	{
+		if (y->GetParent()->GetLeft() == y)
+		{
+			y->GetParent()->SetLeft(x);
+		}
+		else
+		{
+			y->GetParent()->SetRight(x);
+		}
+	}
+
+	x->SetParent(y->GetParent());
+	y->SetParent(x);
+	y->SetLeft(x->GetRight());
+	if (y->GetLeft() != nullptr) y->GetLeft()->SetParent(y);
+	x->SetRight(y);
+}
+
+Node * BinaryTree::BalanceHelper(Node * node)
+{
+	return node;
+}
