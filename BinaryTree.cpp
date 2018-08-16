@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BinaryTree.h"
-
+#include <iostream>
 
 BinaryTree::BinaryTree() : root(nullptr) { }
 BinaryTree::~BinaryTree() { }
@@ -198,5 +198,53 @@ Node * BinaryTree::FindMin(Node * node)
 	else
 	{
 		return FindMin(node->GetLeft());
+	}
+}
+
+void BinaryTree::Inorder()
+{
+	InorderHelper(root);
+	std::cout << std::endl;
+}
+
+void BinaryTree::Preorder()
+{
+	PreorderHelper(root);
+	std::cout << std::endl;
+}
+
+void BinaryTree::Postorder()
+{
+	PostorderHelper(root);
+	std::cout << std::endl;
+}
+
+void BinaryTree::InorderHelper(Node * node)
+{
+	if (node != nullptr)
+	{
+		InorderHelper(node->GetLeft());
+		std::cout << node->GetValue() << "  ";
+		InorderHelper(node->GetRight());
+	}
+}
+
+void BinaryTree::PreorderHelper(Node * node)
+{
+	if (node != nullptr)
+	{
+		std::cout << node->GetValue() << "  ";
+		PreorderHelper(node->GetLeft());
+		PreorderHelper(node->GetRight());
+	}
+}
+
+void BinaryTree::PostorderHelper(Node * node)
+{
+	if (node != nullptr)
+	{
+		PostorderHelper(node->GetLeft());
+		PostorderHelper(node->GetRight());
+		std::cout << node->GetValue() << "  ";
 	}
 }
