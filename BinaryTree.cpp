@@ -83,3 +83,34 @@ Node * BinaryTree::InsertHelper(Node * node, Node * nodeToInsert)
 
 	return node;
 }
+
+bool BinaryTree::Contains(int value)
+{
+	return FindNode(root, value) != nullptr;
+}
+
+Node * BinaryTree::FindNode(Node * node, int value)
+{
+	if (node == nullptr || value == node->GetValue()) return node;
+
+	if (value < node->GetValue())
+	{
+		return FindNode(node->GetLeft(), value);
+	}
+	else // if (value > node->GetValue())
+	{
+		return FindNode(node->GetRight(), value);
+	}
+}
+
+Node * BinaryTree::FindMin(Node * node)
+{
+	if (node->GetLeft() == nullptr)
+	{
+		return node;
+	}
+	else
+	{
+		return FindMin(node->GetLeft());
+	}
+}
