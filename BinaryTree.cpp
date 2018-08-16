@@ -84,6 +84,92 @@ Node * BinaryTree::InsertHelper(Node * node, Node * nodeToInsert)
 	return node;
 }
 
+Node * BinaryTree::Remove(int value)
+{
+	return RemoveHelper(FindNode(root, value));
+}
+
+Node * BinaryTree::RemoveHelper(Node * node)
+{
+	if (node == nullptr) return nullptr;
+
+	if (node->GetLeft() != nullptr && node->GetRight() != nullptr)
+	// Case 4: The value to remove has both a left and right subtree
+	{
+		Node * minNode = FindMin(node->GetRight());
+
+		node->SetValue(minNode->GetValue());
+		node = minNode;
+	}
+
+	Node * parent = node->GetParent();
+
+	if (node->GetLeft() == nullptr && node->GetRight() == nullptr)
+	//  Case 1: The value to remove is a leaf node
+	{
+		if (node == root)
+		{
+			root = nullptr;
+		}
+		else
+		{
+			if (node == parent->GetLeft())
+			{
+				node->GetParent()->SetLeft(nullptr);
+			}
+			else
+			{
+				node->GetParent()->SetRight(nullptr);
+			}
+		}
+	}
+	else if (node->GetRight() != nullptr)
+	// Case 2: The value to remove has a right subtree, but no left subtree
+	{
+		if (node == root)
+		{
+			root = node->GetRight();
+		}
+		else
+		{
+			if (node == parent->GetLeft())
+			{
+				parent->SetLeft(node->GetRight());
+				node->GetRight()->SetParent(parent);
+			}
+			else
+			{
+				parent->SetRight(node->GetRight());
+				node->GetRight()->SetParent(parent);
+			}
+		}
+	}
+	else // if(node.Left != null)
+	// Case 3: The value to remove has a left subtree, but no right subtree
+	{
+		if (node == root)
+		{
+			root = node->GetLeft();
+		}
+		else
+		{
+			if (node == parent->GetLeft())
+			{
+				parent->SetLeft(node->GetLeft());
+				node->GetLeft()->SetParent(parent);
+			}
+			else
+			{
+				parent->SetRight(node->GetLeft());
+				node->GetLeft()->SetParent(parent);
+			}
+		}
+	}
+
+	delete node;
+	return parent;
+}
+
 bool BinaryTree::Contains(int value)
 {
 	return FindNode(root, value) != nullptr;
