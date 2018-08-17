@@ -8,7 +8,7 @@ Node * AVLTree::Insert(int value)
 {
 	Node * node = InsertHelper(root, new AVLNode(value));
 
-	BalanceHelper(node);
+	BalanceHelper(node->GetParent());
 
 	return node;
 }
