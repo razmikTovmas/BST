@@ -50,7 +50,7 @@ Node * BinaryTree::InsertHelper(Node * node, Node * nodeToInsert)
 			else
 			{
 				delete nodeToInsert;
-				return node;
+				return nullptr;
 			}
 		}
 	}

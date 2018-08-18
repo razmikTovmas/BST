@@ -12,3 +12,105 @@
 
 RBTree::RBTree() : BinaryTree() { }
 RBTree::~RBTree() { }
+
+Node * RBTree::Insert(int value)
+{
+	Node * node = InsertHelper(root, new RBNode(value));
+
+	if (node == nullptr) return nullptr;
+
+	BalanceHelper(node);
+
+	return node;
+}
+
+Node * RBTree::BalanceHelper(Node * n)
+{
+	RBNode * node = dynamic_cast<RBNode *> (n);
+
+	if (n == root)
+	{
+		node->SetBlack();
+		return n;
+	}
+
+	Node * parent = n->GetParent();
+
+	if (dynamic_cast<RBNode *> (parent)->IsBlack()) return n;
+
+	Node * uncle;
+
+	if (parent->GetParent()->GetLeft() == parent)
+	{
+		uncle = parent->GetParent()->GetRight();
+	}
+	else
+	{
+		uncle = parent->GetParent()->GetLeft();
+	}
+
+	bool uncleColor;
+
+	if (uncle == nullptr)
+	{
+		uncleColor = false;
+	}
+	else
+	{
+		uncleColor = dynamic_cast<RBNode *> (uncle)->IsRed();
+	}
+
+	if (uncleColor == true)
+	{
+		dynamic_cast<RBNode *> (parent)->SetBlack();
+		dynamic_cast<RBNode *> (uncle)->SetBlack();
+		dynamic_cast<RBNode *> (parent->GetParent())->SetRed();
+		n = parent->GetParent();
+		n = BalanceHelper(n);
+	}
+	else
+	{
+		if (parent == parent->GetParent()->GetLeft())
+		{
+			if (node == parent->GetLeft())
+			//Left - Left Case
+			{
+				dynamic_cast<RBNode *> (parent->GetParent())->SetRed();
+				dynamic_cast<RBNode *> (parent)->SetBlack();
+
+				RightRotation(parent);
+			}
+			else
+			// Left - Right Case
+			{
+				dynamic_cast<RBNode *> (parent->GetParent())->SetRed();
+				node->SetBlack();
+
+				LeftRotation(n);
+				RightRotation(parent);
+			}
+		}
+		else
+		{
+			if (node == parent->GetLeft())
+			//Right - Left Case
+			{
+				dynamic_cast<RBNode *> (parent->GetParent())->SetRed();
+				node->SetBlack();
+
+				RightRotation(n);
+				LeftRotation(parent);
+			}
+			else
+			// Right - Right Case
+			{
+				dynamic_cast<RBNode *> (parent->GetParent())->SetRed();
+				dynamic_cast<RBNode *> (parent)->SetBlack();
+
+				LeftRotation(parent);
+			}
+		}
+	}
+
+	return n;
+}

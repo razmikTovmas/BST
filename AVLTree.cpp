@@ -8,6 +8,8 @@ Node * AVLTree::Insert(int value)
 {
 	Node * node = InsertHelper(root, new AVLNode(value));
 
+	if (node == nullptr) return nullptr;
+
 	BalanceHelper(node->GetParent());
 
 	return node;
@@ -16,6 +18,8 @@ Node * AVLTree::Insert(int value)
 Node * AVLTree::Remove(int value)
 {
 	Node * node = RemoveHelper(FindNode(root, value));
+
+	if (node == nullptr) return nullptr;
 
 	BalanceHelper(node);
 
