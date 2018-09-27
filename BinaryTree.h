@@ -5,7 +5,6 @@ class BinaryTree
 {
 
 private:
-	Node * FindMin(Node *);
 	void InorderHelper(Node *);
 	void PreorderHelper(Node *);
 	void PostorderHelper(Node *);
@@ -13,17 +12,18 @@ private:
 protected:
 	Node * root;
 	Node * FindNode(Node *, int);
+	Node * FindMin(Node *);
 	Node * InsertHelper(Node *, Node *);
 	Node * RemoveHelper(Node *);
 	void LeftRotation(Node *);
 	void RightRotation(Node *);
-	virtual Node * BalanceHelper(Node *);
+	virtual void BalanceHelper(Node *);
 
 public:
 	BinaryTree();
 	virtual ~BinaryTree();
-	virtual Node * Insert(int);
-	virtual Node * Remove(int);
+	virtual void Insert(int);
+	virtual void Remove(int);
 	bool Contains(int);
 	void Inorder();
 	void Preorder();

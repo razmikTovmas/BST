@@ -6,6 +6,7 @@ class RBTree : public BinaryTree
 {
 private:
 	virtual Node * BalanceHelper(Node *);
+	Node * RemoveBalance(Node *);
 public:
 	RBTree();
 	~RBTree();

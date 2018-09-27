@@ -4,31 +4,27 @@
 AVLTree::AVLTree() { }
 AVLTree::~AVLTree() { }
 
-Node * AVLTree::Insert(int value)
+void AVLTree::Insert(int value)
 {
 	Node * node = InsertHelper(root, new AVLNode(value));
 
-	if (node == nullptr) return nullptr;
+	if (node == nullptr) return;
 
 	BalanceHelper(node->GetParent());
-
-	return node;
 }
 
-Node * AVLTree::Remove(int value)
+void AVLTree::Remove(int value)
 {
 	Node * node = RemoveHelper(FindNode(root, value));
 
-	if (node == nullptr) return nullptr;
+	if (node == nullptr) return;
 
 	BalanceHelper(node);
-
-	return node;
 }
 
-Node * AVLTree::BalanceHelper(Node * node)
+void AVLTree::BalanceHelper(Node * node)
 {
-	if (node == nullptr) return nullptr;
+	if (node == nullptr) return;
 
 	AVLNode * avlNode = dynamic_cast<AVLNode *> (node);
 
@@ -73,7 +69,8 @@ Node * AVLTree::BalanceHelper(Node * node)
 		dynamic_cast<AVLNode *> (node)->SetHeight(1 + Max(Height(node->GetLeft()), Height(node->GetRight())));
 	}
 
-	return BalanceHelper(node->GetParent());
+	if (node->GetParent() == nullptr) return;
+	BalanceHelper(node->GetParent());
 }
 
 int AVLTree::Height(Node * node) { return (node == nullptr) ? 0 : dynamic_cast<AVLNode *> (node)->GetHeight(); }

@@ -5,13 +5,13 @@
 class AVLTree : public BinaryTree
 {
 private:
-	virtual Node * BalanceHelper(Node *);
+	virtual void BalanceHelper(Node *);
 	int Height(Node *);
 	int Max(int a, int b);
 	int Balance(Node *);
 public:
 	AVLTree();
 	~AVLTree();
-	virtual Node * Insert(int);
-	virtual Node * Remove(int);
+	virtual void Insert(int);
+	virtual void Remove(int);
 };

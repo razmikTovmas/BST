@@ -114,3 +114,13 @@ Node * RBTree::BalanceHelper(Node * n)
 
 	return n;
 }
+
+Node * RBTree::Remove(int value)
+{
+	return nullptr;
+}
+
+Node * RBTree::RemoveBalance(Node * node)
+{
+	return nullptr;
+}
