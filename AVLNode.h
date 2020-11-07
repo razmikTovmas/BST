@@ -1,12 +1,17 @@
 #pragma once
 #include "Node.h"
+
 class AVLNode : public Node
 {
-private:
-	int height;
 public:
-	AVLNode(int);
-	~AVLNode();
-	int GetHeight();
-	void SetHeight(int);
+    AVLNode(int value)
+        : Node(value)
+        , height(1)
+    { }
+    ~AVLNode() = default;
+
+    int GetHeight() { return height; }
+    void SetHeight(int h) { height = h; }
+private:
+    int height;
 };

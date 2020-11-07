@@ -3,14 +3,20 @@
 
 class RBNode : public Node
 {
-private:
-	bool color; /* Red - true, Black - false */
 public:
-	RBNode(int);
-	~RBNode();
-	void SetBlack();
-	void SetRed();
-	bool IsBlack();
-	bool IsRed();
-	void ReColor();
+    RBNode(int value)
+        : Node(value)
+        , color(true)
+    {}
+
+    ~RBNode() = default;
+
+    void SetBlack() { color = false; }
+    void SetRed() { color = true; }
+    bool IsBlack() { return !color; }
+    bool IsRed() { return color; }
+    void ReColor() { color = !color; }
+
+private:
+    bool color; /* Red - true, Black - false */
 };
