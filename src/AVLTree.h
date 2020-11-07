@@ -7,11 +7,11 @@ class AVLTree : public BinaryTree
 public:
     AVLTree() = default;
     ~AVLTree() = default;
-    virtual void Insert(int);
-    virtual void Remove(int);
+    virtual Node* Insert(int);
+    virtual Node* Remove(int);
 
 private:
-    virtual void BalanceHelper(Node*);
+    virtual Node* BalanceHelper(Node*);
     int Height(Node*);
     int Balance(Node*);
 };

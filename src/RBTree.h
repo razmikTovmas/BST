@@ -7,10 +7,10 @@ class RBTree : public BinaryTree
 public:
     RBTree() = default;
     ~RBTree() = default;
-    virtual Node* Insert(int);
-    virtual Node* Remove(int);
+    Node* Insert(int) override;
+    Node* Remove(int) override;
 
 private:
-    virtual Node* BalanceHelper(Node*);
+    Node* BalanceHelper(Node*) override;
     Node* RemoveBalance(Node*);
 };

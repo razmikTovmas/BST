@@ -8,7 +8,7 @@ public:
         , right(nullptr)
         , parent(nullptr)
     { }
-    ~Node() = default;
+    virtual ~Node() = default;
 
     int GetValue() { return value; }
     void SetValue(int v) { value = v; }

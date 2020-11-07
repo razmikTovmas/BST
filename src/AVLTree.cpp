@@ -1,30 +1,30 @@
 #include "AVLTree.h"
 #include <algorithm>
 
-void AVLTree::Insert(int value)
+Node* AVLTree::Insert(int value)
 {
     Node* node = InsertHelper(root, new AVLNode(value));
     if (node == nullptr) {
-        return;
+        return nullptr;
     }
 
-    BalanceHelper(node->GetParent());
+    return BalanceHelper(node->GetParent());
 }
 
-void AVLTree::Remove(int value)
+Node* AVLTree::Remove(int value)
 {
     Node* node = RemoveHelper(FindNode(root, value));
     if (node == nullptr) {
-        return;
+        return nullptr;
     }
 
-    BalanceHelper(node);
+    return BalanceHelper(node);
 }
 
-void AVLTree::BalanceHelper(Node* node)
+Node* AVLTree::BalanceHelper(Node* node)
 {
     if (node == nullptr) {
-        return;
+        return nullptr;
     }
 
     AVLNode* avlNode = dynamic_cast<AVLNode*> (node);
@@ -62,9 +62,9 @@ void AVLTree::BalanceHelper(Node* node)
     }
 
     if (node->GetParent() == nullptr) {
-        return;
+        return node;
     }
-    BalanceHelper(node->GetParent());
+    return BalanceHelper(node->GetParent());
 }
 
 int AVLTree::Height(Node* node)

@@ -16,13 +16,13 @@ protected:
     Node* RemoveHelper(Node*);
     void LeftRotation(Node*);
     void RightRotation(Node*);
-    virtual void BalanceHelper(Node*);
+    virtual Node* BalanceHelper(Node*);
 
 public:
     BinaryTree();
     virtual ~BinaryTree();
-    virtual void Insert(int);
-    virtual void Remove(int);
+    virtual Node* Insert(int);
+    virtual Node* Remove(int);
     bool Contains(int);
     void Inorder();
     void Preorder();

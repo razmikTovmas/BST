@@ -4,9 +4,9 @@
 BinaryTree::BinaryTree() : root(nullptr) { }
 BinaryTree::~BinaryTree() { }
 
-void BinaryTree::Insert(int value)
+Node* BinaryTree::Insert(int value)
 {
-    InsertHelper(root, new Node(value));
+    return InsertHelper(root, new Node(value));
 }
 
 Node* BinaryTree::InsertHelper(Node* node, Node* nodeToInsert)
@@ -58,9 +58,9 @@ Node* BinaryTree::InsertHelper(Node* node, Node* nodeToInsert)
     return node;
 }
 
-void BinaryTree::Remove(int value)
+Node* BinaryTree::Remove(int value)
 {
-    RemoveHelper(FindNode(root, value));
+    return RemoveHelper(FindNode(root, value));
 }
 
 Node* BinaryTree::RemoveHelper(Node* node)
@@ -254,7 +254,7 @@ void BinaryTree::RightRotation(Node* x)
     x->SetRight(y);
 }
 
-void BinaryTree::BalanceHelper(Node* node)
+Node* BinaryTree::BalanceHelper(Node* node)
 {
-    return;
+    return node;
 }
